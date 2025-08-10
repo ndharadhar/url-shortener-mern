@@ -2,6 +2,9 @@
 
 console.log("Starting server...");
 
+require('dotenv').config();
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -17,7 +20,9 @@ app.use('/api', urlRoutes);
 //app.use('/', require('./routes/urlRoutes'));
 
 // MongoDB Connection
-const mongoURI = 'mongodb://localhost:27017/urlshortener';
+//const mongoURI = 'mongodb://localhost:27017/urlshortener';
+const mongoURI = process.env.MONGO_URI;
+
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
