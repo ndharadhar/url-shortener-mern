@@ -26,7 +26,9 @@ exports.createShortUrl = async (req, res) => {
     console.log("Saved to DB:", newUrl);
     
     //const shortUrl = `http://localhost:5000/${shortCode}`;
-    const shortUrl = `${process.env.BASE_URL}/${urlCode}`;
+    //const shortUrl = `${process.env.BASE_URL}/${urlCode}`;
+    const shortUrl = `${process.env.BASE_URL}/${shortCode}`;
+
 
     res.json({ shortUrl });
   } catch (err) {
