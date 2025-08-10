@@ -13,8 +13,8 @@ app.use(cors());
 app.use(express.json());
 
 const urlRoutes = require('./routes/urlRoutes');
-//app.use('/api', urlRoutes);
-app.use('/', require('./routes/urlRoutes'));
+app.use('/api', urlRoutes);
+//app.use('/', require('./routes/urlRoutes'));
 
 // MongoDB Connection
 const mongoURI = 'mongodb://localhost:27017/urlshortener';
