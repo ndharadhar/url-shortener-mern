@@ -32,7 +32,7 @@ app.get('/:shortCode', async (req, res) => {
   const { shortCode } = req.params;
 
   try {
-    const entry = await Url.findOne({ shortId });
+    const entry = await Url.findOne({ shortCode });
 
     if (!entry) {
       return res.status(404).send('Short URL not found');
@@ -40,10 +40,11 @@ app.get('/:shortCode', async (req, res) => {
 
     return res.redirect(entry.originalUrl);
   } catch (err) {
-    console.error('Redirect error:', err);
+    console.error('Redirect error:', err.message);
     return res.status(500).send('Server error');
   }
 });
+
 
 
 

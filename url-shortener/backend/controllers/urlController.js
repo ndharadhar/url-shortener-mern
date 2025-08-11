@@ -2,7 +2,7 @@ const Url = require('../models/Url'); // Import your model
 
 exports.createShortUrl = async (req, res) => {
   const { originalUrl } = req.body;
-
+  
   if (!originalUrl) {
     return res.status(400).json({ error: 'Missing originalUrl' });
   }
@@ -24,6 +24,7 @@ exports.createShortUrl = async (req, res) => {
 
     // ✅ Log after saving
     console.log("Saved to DB:", newUrl);
+
     
     //const shortUrl = `http://localhost:5000/${shortCode}`;
     //const shortUrl = `${process.env.BASE_URL}/${urlCode}`;
