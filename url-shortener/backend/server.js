@@ -4,6 +4,9 @@ console.log("🚀 Starting server...");
 
 require('dotenv').config();
 
+const Url = require('./models/Url'); // Adjust path if needed
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -24,6 +27,25 @@ const urlRoutes = require('./routes/urlRoutes');
 
 app.use('/api', urlRoutes);
 // Handles /api/shorten
+
+app.get('/:shortId', async (req, res) => {
+  const { shortId } = req.params;
+
+  try {
+    const entry = await Url.findOne({ shortId });
+
+    if (!entry) {
+      return res.status(404).send('Short URL not found');
+    }
+
+    return res.redirect(entry.originalUrl);
+  } catch (err) {
+    console.error('Redirect error:', err);
+    return res.status(500).send('Server error');
+  }
+});
+
+
 
 // ✅ Basic Health Check
 app.get('/', (req, res) => {
