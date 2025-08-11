@@ -16,7 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 const urlRoutes = require('./routes/urlRoutes');
-app.use('/api', urlRoutes);
+//app.use('/api', urlRoutes);
+app.use('/', urlRoutes);
 //app.use('/', require('./routes/urlRoutes'));
 
 // MongoDB Connection
