@@ -28,8 +28,8 @@ const urlRoutes = require('./routes/urlRoutes');
 app.use('/api', urlRoutes);
 // Handles /api/shorten
 
-app.get('/:shortId', async (req, res) => {
-  const { shortId } = req.params;
+app.get('/:shortCode', async (req, res) => {
+  const { shortCode } = req.params;
 
   try {
     const entry = await Url.findOne({ shortId });
