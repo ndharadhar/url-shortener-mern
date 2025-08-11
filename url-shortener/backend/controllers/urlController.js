@@ -2,6 +2,12 @@ const Url = require('../models/Url'); // Import your model
 
 exports.createShortUrl = async (req, res) => {
   const { originalUrl } = req.body;
+
+  let sanitizedUrl = originalUrl;
+  if (!/^https?:\/\//i.test(sanitizedUrl)) {
+    sanitizedUrl = 'https://' + sanitizedUrl;
+  }
+
   
   if (!originalUrl) {
     return res.status(400).json({ error: 'Missing originalUrl' });
@@ -17,7 +23,7 @@ exports.createShortUrl = async (req, res) => {
   try {
     // Save to MongoDB
     const newUrl = new Url({ 
-        originalUrl: req.body.originalUrl, 
+        originalUrl: sanitizedUrl, 
         shortCode: shortCode 
     });
     await newUrl.save();
